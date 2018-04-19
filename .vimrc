@@ -44,6 +44,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'whatyouhide/vim-gotham'
 call vundle#end()
 
+colorscheme molokai
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+
 " space-vim-dark theme
 " hi Comment cterm=italic
 " colorscheme space-vim-dark
@@ -52,11 +57,8 @@ call vundle#end()
 " colorscheme solarized
 " set background=light
 
-colorscheme gotham256
-
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+" molokai theme
+let g:rehash256=1
 
 " YouCompleteMe
 let g:ycm_server_python_interpreter='/usr/bin/python2'
@@ -81,7 +83,7 @@ map <F2> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Airline and Airline-theme
-let g:airline_theme='gotham256'
+let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -96,6 +98,15 @@ let g:clang_format#code_style='WebKit'
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+let g:clang_format#style_options = {
+            \ "PointerAlignment" : "true",
+            \ "AlignConsecutiveDeclarations" : "true",
+            \ "AlignConsecutiveAssignments" : "true",
+            \ "AllowShortFunctionsOnASingleLine" : "All",
+            \ "AllowShortBlocksOnASingleLine" : "true",
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AllowShortLoopsOnASingleLine" : "true",
+            \ "Standard" : "C++11"}
 
 " vim-commentary
 autocmd FileType python,shell set commentstring=##\ %s
